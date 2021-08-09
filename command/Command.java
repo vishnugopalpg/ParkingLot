@@ -29,23 +29,27 @@ public class Command {
 
     //}
     public void addVehicle(){
+        int[] slotNumber = new int[3];
         System.out.println("Vehicle Number and Type");
         String licenseNumber,type;
         licenseNumber = scanner.next();
         type = scanner.next();
         Vehicle vehicle = new Vehicle(licenseNumber, type);
-        int[] slotNumber = (int[]) parkingSpace.addVehicleToParkingSpace(vehicle);
-        System.out.println(slotNumber[0] + " " + slotNumber[1]);
-        
+        slotNumber =  parkingSpace.addVehicleToParkingSpace(vehicle);
+        if(slotNumber[0]!=-1){
+            System.out.println(slotNumber[0] + " " + slotNumber[1]);
+        }else{
+            System.out.println("No Slot availble");
+        }
 
     }
     public void leaveVehicle(){
-        //int[] slot= new int[2];
+        int[] slot= new int[3];
         System.out.println("Vehicle Number and type");
         String licenseNumber,type;
         licenseNumber = scanner.next();
         type=scanner.next();
-        int[] slot = parkingSpace.leaveVehicle(licenseNumber,type);
+        slot = parkingSpace.leaveVehicle(licenseNumber,type);
         System.out.println("Vehicle Number "+ licenseNumber + "leave from slot "+slot[0] +" "+ slot[1]);
 
     }
